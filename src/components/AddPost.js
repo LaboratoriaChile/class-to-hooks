@@ -1,54 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-export class AddPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      body: ''
-    };
-  }
+const AddPost = ({posts, setPost}) => {
 
-  onChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    })
-  }
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
-  onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addPost(this.state);
-    this.setState({
-      title: '',
-      body: '',
-    });
-
+    if(!event) {
+      return;
+    } else {
+      addPost(title, body);
+      setTitle('');
+      setBody('');
+    }
   }
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Add title"
-          value={this.state.title}
-          onChange={this.onChange}
-        />
-        <input
-          type="text"
-          name="body"
-          placeholder="Add body"
-          value={this.state.body}
-          onChange={this.onChange}
-        />
-        <input
-          type="submit"
-          value="submit"
-        />
-      </form>
-    );
+  const addPost = (title, body) => {
+    const newPosts = [{title, body}, ...posts];
+    setPost(newPosts);    
   }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="title"
+        placeholder="Add title"
+        value={title}
+        onChange={event => setTitle(event.target.value)}
+      />
+      <input
+        type="text"
+        name="body"
+        placeholder="Add body"
+        value={body}
+        onChange={event => setBody(event.target.value)}
+      />
+      <input
+        type="submit"
+        value="submit"
+      />
+    </form>
+  );
+
 }
 
 
