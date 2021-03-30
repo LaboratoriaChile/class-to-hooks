@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import AddPost from './AddPost.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const Posts = () => {
 
     const [posts, setPost] = useState([
        {
-         id: 0,
+         id: uuidv4(),
          title: "soy un título",
          body: "soy un body"
        },
        {
-         id: 1,
+         id: uuidv4(),
          title: "MEJOR NOTICIA NO TE LA PUEDES PERDER",
          body: "EL MEJOR BODY xd"
        }

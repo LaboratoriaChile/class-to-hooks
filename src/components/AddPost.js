@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddPost = ({posts, setPost}) => {
 
@@ -17,8 +18,9 @@ const AddPost = ({posts, setPost}) => {
   }
 
   const addPost = (title, body) => {
-    const newPosts = [{title, body}, ...posts];
-    setPost(newPosts);    
+    let id = uuidv4();
+    const newPosts = [{id, title, body}, ...posts];
+    setPost(newPosts);
   }
 
   return (
