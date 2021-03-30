@@ -1,5 +1,5 @@
 {
-  "name": "state-to-hooks",
+  "name": "class-to-hooks",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
